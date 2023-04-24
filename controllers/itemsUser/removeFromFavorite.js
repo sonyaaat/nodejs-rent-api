@@ -8,13 +8,13 @@ if(!item)
 {
     throw new Error(`There isn't item with id ${itemId}`)
 }
-const fav=await Favorite.findOne({owner,itemId})
+const fav=await Favorite.findOneAndRemove({owner,itemId})
+const all= await Favorite.find()
 if(!fav)
 {
     throw new Error("This item isn't in favorites")
 }
-fav.remove()
-fav.save()
-res.status(200).json({message:`${item.name} was successfully removed from favorites`})
+
+res.status(200).json({message:`${item.name} was successfully removed from favorites`,all})
 };
 module.exports = removeFromFavorite;

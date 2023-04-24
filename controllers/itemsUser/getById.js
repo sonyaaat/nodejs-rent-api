@@ -1,6 +1,8 @@
 const Item = require("../../models/items");
 const getById=async(req,res)=>{
+    
 const {itemId}=req.params
+console.log(itemId)
 const item=await Item.findById(itemId)
 if(!item)
 {

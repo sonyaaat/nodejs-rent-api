@@ -21,13 +21,14 @@ const registerSchema = Joi.object({
 });
 
 const addItemSchema = Joi.object({
-  name: Joi.string().min(3).max(50).required(),
-  description: Joi.string().min(5).max(500).required(),
-  price: Joi.number().required(),
-  quantity: Joi.number().required(),
-  favorite: Joi.boolean(),
-  owner: Joi.string(),
-   image:Joi.string()
+  // name: Joi.string().min(3).max(50).required(),
+  // description: Joi.string().min(5).max(500).required(),
+  // price: Joi.number().required(),
+  // quantity: Joi.number().required(),
+  // favorite: Joi.boolean(),
+  // owner: Joi.string(),
+  //  image:Joi.string(),
+  //  formData:Joi.any()
 });
 
 const updateItemsSchema=Joi.object({
@@ -43,6 +44,12 @@ const updateItemsSchema=Joi.object({
 const favSchema = Joi.object({
   favorite: Joi.boolean().required(),
 });
+const addTofav=Joi.object({
+  name: Joi.string().min(3).max(50).required(),
+  price: Joi.number().required(),
+  owner: Joi.string(),
+   image:Joi.string()
+})
 
 const placeOrderSchema=Joi.object({
   itemId: Joi.string(),
@@ -53,5 +60,20 @@ const placeOrderSchema=Joi.object({
   owner: Joi.string(),
   status:Joi.string().valid('in progress','completed',"cancelled")
 })
+const editUserSchema=Joi.object({
+firstName:Joi.string().required(),
+lastName:Joi.string().required(),
+username:Joi.string().required(),
+address:Joi.string().required(),
+country:Joi.string().required(),
+city:Joi.string().required(),
+postalCode:Joi.number().required(),
+// email: Joi.string()
+// .email({
+//   minDomainSegments: 2,
+//   tlds: { allow: ["com", "net"] },
+// })
+// .required(),
+})
 
-module.exports = { loginSchema,registerSchema, addItemSchema ,updateItemsSchema,favSchema,placeOrderSchema};
+module.exports = { loginSchema,registerSchema, addTofav,addItemSchema ,updateItemsSchema,favSchema,placeOrderSchema,editUserSchema};

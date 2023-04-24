@@ -11,6 +11,18 @@ const favSchema = Schema(
       ref: "user",
       required: true,
     },
+    price: {
+      type: String,
+      required: [true, "Set price"],
+    },
+    image:{
+      type: String,
+      required: true,
+    },
+    name: {
+      type: String,
+      required: [true, "Set price"],
+    },
   },
   { versionKey: false, timeStaps: true }
 );

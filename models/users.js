@@ -36,6 +36,31 @@ const userSchema = Schema({
   confirmationToken: {
     type: String,
   },
+  firstName:{
+    type: String,
+  },
+  lastName:{
+    type: String,
+  },
+  username:{
+    type: String,
+  },
+  address:{
+    type: String,
+  },
+  city:{
+    type: String,
+  },
+  country:{
+    type: String,
+  },
+  postalCode:{
+    type: String,
+  },
+  avatar:{
+    type: String,
+  }
+
 });
 
 const User = model("user", userSchema);

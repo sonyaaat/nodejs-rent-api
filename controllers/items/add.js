@@ -2,11 +2,11 @@ const { addItemSchema } = require("../../helpers/joiSchemas");
 const Item = require("../../models/items");
 const path=require("path")
 const add = async (req, res) => {
-  const { error } = addItemSchema.validate(req.body);
-  if (error) {
-    console.log("h")
-    return res.status(404).json({ message: error.message });
-  }
+  // const { error } = addItemSchema.validate(req.body);
+  // if (error) {
+  //   console.log("h")
+  //   return res.status(404).json({ message: error.message });
+  // }
   const { name, description, quantity, price } = req.body;
   console.log(quantity);
   const { id: owner } = req.user;
@@ -20,7 +20,6 @@ const add = async (req, res) => {
   if (item) {
     throw new Error(`Item with name ${name} already exists`);
   }
-  console.log(originalname,"hj")
   const result = await Item.create({
     name,
     description,

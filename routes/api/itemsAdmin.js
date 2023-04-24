@@ -6,7 +6,7 @@ const ctrlWrapper=require("../../middlewares/ctrlWrapper")
 const {getAllByAdmin,add,getById,deleteById,updateById,updateFavorite}=require("../../controllers/items/index")
 const upload=require("../../middlewares/multer")
 
-router.get('/',auth,ctrlWrapper(getAllByAdmin) )
+router.get('/',ctrlWrapper(getAllByAdmin) )
 
 router.get('/:itemId',auth,ctrlWrapper(getById))
 

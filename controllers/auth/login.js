@@ -8,7 +8,9 @@ const { SECRET_KEY } = process.env;
 
 const login = async (req, res, next) => {
   const { error } = loginSchema.validate(req.body);
+  console.log(req.body)
   if (error) {
+    
     return res.status(404).json({ message: error.message });
   }
   const { email, password } = req.body;
@@ -26,6 +28,6 @@ const login = async (req, res, next) => {
   };
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "1h" });
   await User.findByIdAndUpdate(user._id, { token });
-  res.status(201).json({ token, user: { email } });
+  res.status(201).json({ token, user: { email,role:user.role }});
 };
 module.exports = login;

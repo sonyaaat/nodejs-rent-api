@@ -1,7 +1,7 @@
 const Order=require("../../models/order")
 const getOrders=async(req,res)=>{
-const {id:owner}=req.user
-const orders=await Order.find({owner})
+// npmconst {id:owner}=req.user
+const orders = await Order.find({  }).populate('itemId');
 console.log(orders)
 if(orders.length===0)
 {

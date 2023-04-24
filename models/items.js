@@ -25,6 +25,9 @@ const itemSchema = Schema(
     image:{
       type: String,
       required: true,
+    },
+    formData:{
+      
     }
   },
   { versionKey: false, timeStaps: true }

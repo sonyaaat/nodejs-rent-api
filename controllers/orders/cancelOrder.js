@@ -1,9 +1,12 @@
 const Order=require("../../models/order")
+const mongoose = require('mongoose');
 const Item=require("../../models/items")
 const cancelOrder=async(req,res)=>{
-const {id:owner}=req.user
-const {orderId}=req.params
-const order=await Order.findOne({owner,_id:orderId})
+ const {id:owner}=req.user
+const {orderId}=req.body
+console.log("W",orderId)
+const order=await Order.findOne({_id:orderId})
+console.log("order",order)
 if(!order)
 {
     throw new Error("There isn`t such order")
@@ -11,16 +14,15 @@ if(!order)
 order.status="cancelled"
 order.save()
 const item=await Item.findOne({_id:order.itemId})
+console.log("item",item)
 if(!item){
     throw new Error("There isn`t such item in bd")
 }
-if(order.status==="cancelled")
-{
-    throw new Error("Your order is already cancelled")
-}
+
 const newQuantity=item.quantity+order.quantity
 item.quantity=newQuantity
 item.save()
-res.status(200).json({message:`Your order with id ${orderId} was cancelled`})
+const orders = await Order.find({ owner: mongoose.Types.ObjectId(owner) }).populate('itemId');
+res.status(200).json({data:orders})
 }
 module.exports=cancelOrder

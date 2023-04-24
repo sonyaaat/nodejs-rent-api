@@ -6,7 +6,8 @@
     "start": "cross-env NODE_ENV=production node ./server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./server.js",
     "lint": "eslint **/*.js",
-    "lint:fix": "eslint --fix **/*.js"
+    "lint:fix": "eslint --fix **/*.js",
+    "service1": "nodemon service1.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -18,7 +19,9 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.9.1",
     "morgan": "1.10.0",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.6.1",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "eslint": "7.19.0",

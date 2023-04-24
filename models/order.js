@@ -6,14 +6,7 @@ const orderSchema = Schema(
       required: true,
       ref: "item",
     },
-    // name: {
-    //   type: String,
-    //   required: [true, "Set name for item"],
-    // },
-    // price: {
-    //   type: String,
-    //   required: [true, "Set price"],
-    // },
+   
     quantity:{
         type:Number,
         required: true,
@@ -28,7 +21,7 @@ const orderSchema = Schema(
     },
     status:{
       type: String,
-      enum : ['in progress','completed',"cancelled"],
+      enum : ['in progress',"shippped","completed","cancelled"],
       default: "in progress",
     }
   },

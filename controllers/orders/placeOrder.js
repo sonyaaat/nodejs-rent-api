@@ -1,5 +1,7 @@
 const Item = require("../../models/items");
+const mongoose = require('mongoose');
 const Order = require("../../models/order");
+const Favorite=require("../../models/favorites")
 const { placeOrderSchema, addItemSchema } = require("../../helpers/joiSchemas");
 const placeOrder = async (req, res) => {
   const {itemId,quantity}=req.body
@@ -22,7 +24,10 @@ const placeOrder = async (req, res) => {
   }
   item.quantity-=quantity
   item.save()
-  const result=await Order.create({itemId,quantity,owner})
+ 
+  await Favorite.findOneAndDelete({itemId:mongoose.Types.ObjectId(itemId)})
+  console.log(itemId)
+  const result=await Order.create({itemId,quantity,owner,})
   res.status(200).json({data:result})
 };
 module.exports = placeOrder;
