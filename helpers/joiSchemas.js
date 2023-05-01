@@ -20,16 +20,7 @@ const registerSchema = Joi.object({
   role: Joi.string().valid('user', 'admin'),
 });
 
-const addItemSchema = Joi.object({
-  // name: Joi.string().min(3).max(50).required(),
-  // description: Joi.string().min(5).max(500).required(),
-  // price: Joi.number().required(),
-  // quantity: Joi.number().required(),
-  // favorite: Joi.boolean(),
-  // owner: Joi.string(),
-  //  image:Joi.string(),
-  //  formData:Joi.any()
-});
+
 
 const updateItemsSchema=Joi.object({
   name: Joi.string().min(3).max(50),
@@ -68,12 +59,24 @@ address:Joi.string().required(),
 country:Joi.string().required(),
 city:Joi.string().required(),
 postalCode:Joi.number().required(),
-// email: Joi.string()
-// .email({
-//   minDomainSegments: 2,
-//   tlds: { allow: ["com", "net"] },
-// })
-// .required(),
+
+})
+const carSchema=Joi.object({
+  brand: Joi.string().required(),
+  model: Joi.string().required(),
+  year: Joi.string().required(),
+  description: Joi.string().min(5).max(500).required(),
+  price: Joi.number().required(),
+  seats:Joi.number().required(),
+  status:Joi.string().valid('available','unavailable')
+  // image:
+})
+const rentCarSchema=Joi.object({
+  itemId: Joi.string().required(),
+  owner: Joi.string(),
+  startDate:Joi.date().required(),
+  endDate:Joi.date().required(),
+  status:Joi.string().valid('cancelled','active')
 })
 
-module.exports = { loginSchema,registerSchema, addTofav,addItemSchema ,updateItemsSchema,favSchema,placeOrderSchema,editUserSchema};
+module.exports = { loginSchema,registerSchema, addTofav ,updateItemsSchema,favSchema,placeOrderSchema,editUserSchema,rentCarSchema,carSchema};
